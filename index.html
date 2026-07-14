@@ -3,68 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bake & Craft by Leidy is a warm, handmade brand celebrating sweet treats and creative craft details.">
     <title>Bake & Craft by Leidy</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for clean typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="page-shell">
+        <header class="hero container">
+            <div class="hero-copy">
+                <p class="eyebrow">Sweet moments • handmade details</p>
+                <h1>Bake &amp; Craft<br>by Leidy</h1>
+                <p class="hero-text">
+                    A cozy blend of dreamy bakes, artisanal charm, and thoughtful creations made to feel personal,
+                    beautiful, and memorable.
+                </p>
 
-    <!-- Header Section -->
-    <header class="header">
-        <div class="container">
-            <h1 class="brand-title">Bake & Craft</h1>
-            <p class="brand-subtitle">by Leidy</p>
-            <p class="bio">Handcrafted delights and beautiful creations. Explore my recent work below and connect with me on social media.</p>
-            
-            <!-- Contact / Social Buttons -->
-            <div class="cta-group">
-                <a href="https://www.instagram.com/bakeandcraftbyleidy" target="_blank" rel="noopener" class="btn btn-instagram">
-                    Follow on Instagram
-                </a>
-                <a href="mailto:bake_craft_leidy@outlook.com" class="btn btn-email">
-                    Get in Touch
-                </a>
+                <div class="cta-group">
+                    <a href="https://www.instagram.com/bake_craft_leidy/" target="_blank" rel="noopener" class="btn btn-primary">
+                        Follow @bake_craft_leidy
+                    </a>
+                    <a href="mailto:bake_craft_leidy@outlook.com" class="btn btn-secondary">
+                        Contact the studio
+                    </a>
+                </div>
+
+                <ul class="highlights">
+                    <li>Custom bakes</li>
+                    <li>Handcrafted details</li>
+                    <li>Made with heart</li>
+                </ul>
             </div>
-        </div>
-    </header>
 
-    <!-- Gallery Section -->
-    <main class="gallery-section">
-        <div class="container">
-           <div class="image-grid" id="photo-gallery">
-               <!-- JavaScript will inject the images here -->
-           </div>
-        </div>
-    </main>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <img src="images/logo.png" alt="Bake & Craft by Leidy logo" loading="eager">
+                    <div class="hero-card-badge">Fresh from the studio</div>
+                </div>
+            </div>
+        </header>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 Bake & Craft by Leidy. All rights reserved.</p>
-    </footer>
-<script>
-    const TOTAL_IMAGES = 6; // Change this number when you upload new photos
-    const IMAGES_TO_SHOW = 6;
-    
-    // 1. Generate the array of filenames programmatically
-    const allImages = [];
-    for (let i = 1; i <= TOTAL_IMAGES; i++) {
-        allImages.push(`images/project-${i}.png`);
-    }
+        <main>
+            <section class="showcase container">
+                <div class="showcase-card">
+                    <p class="eyebrow">The story behind the brand</p>
+                    <h2>Every creation is styled to feel like a little celebration.</h2>
+                    <p>
+                        From delicate cake details to charming handmade pieces, the goal is to bring warmth and a touch
+                        of magic to every moment shared online and in person.
+                    </p>
+                </div>
+            </section>
 
-    // 2. Shuffle and slice the array
-    const shuffled = allImages.sort(() => 0.5 - Math.random());
-    const selectedImages = shuffled.slice(0, IMAGES_TO_SHOW);
+            <section class="gallery-section container">
+                <div class="section-heading">
+                    <p class="eyebrow">Recent favorites</p>
+                    <h2>Handpicked glimpses from the collection</h2>
+                </div>
+                <div class="image-grid" id="photo-gallery"></div>
+            </section>
+        </main>
 
-    // 3. Render to the page
-    const gallery = document.getElementById('photo-gallery');
-    gallery.innerHTML = selectedImages.map(src => `
-        <div class="gallery-item">
-            <img src="${src}" alt="Bake and Craft Creation" loading="lazy">
-        </div>
-    `).join('');
-</script>
+        <footer class="footer container">
+            <p>© 2026 Bake & Craft by Leidy</p>
+        </footer>
+    </div>
+
+    <script>
+        const TOTAL_IMAGES = 6;
+        const IMAGES_TO_SHOW = 6;
+
+        const allImages = Array.from({ length: TOTAL_IMAGES }, (_, index) => `images/project-${index + 1}.png`);
+        const shuffled = [...allImages].sort(() => 0.5 - Math.random());
+        const selectedImages = shuffled.slice(0, IMAGES_TO_SHOW);
+
+        const gallery = document.getElementById('photo-gallery');
+        gallery.innerHTML = selectedImages.map((src, index) => `
+            <article class="gallery-item">
+                <img src="${src}" alt="Featured Bake & Craft creation ${index + 1}" loading="lazy">
+            </article>
+        `).join('');
+    </script>
 </body>
 </html>
