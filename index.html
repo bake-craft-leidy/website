@@ -30,10 +30,10 @@
                     </a>
                 </div>
 
-                <ul class="highlights">
-                    <li>Custom bakes</li>
-                    <li>Handcrafted details</li>
-                    <li>Made with heart</li>
+<ul class="highlights">
+                    <li><a href="custom-bakes.html">Custom bakes</a></li>
+                    <li><a href="handcrafted-details.html">Handcrafted details</a></li>
+                    <li><a href="made-with-heart.html">Made with heart</a></li>
                 </ul>
             </div>
 
@@ -72,17 +72,30 @@
     </div>
 
     <script>
-        const TOTAL_IMAGES = 6;
-        const IMAGES_TO_SHOW = 6;
-
-        const allImages = Array.from({ length: TOTAL_IMAGES }, (_, index) => `images/project-${index + 1}.png`);
+        // All categories available
+        const categories = [
+            { name: 'custom-bakes' },
+            { name: 'handcrafted-details' },
+            { name: 'made-with-heart' }
+        ];
+        
+        // Collect all available images from all categories
+        // Try loading up to 20 images per category to catch all numbered files
+        const allImages = [];
+        categories.forEach(cat => {
+            for (let i = 1; i <= 20; i++) {
+                allImages.push(`images/${cat.name}/${i}.png`);
+            }
+        });
+        
+        // Shuffle and select 6 random images
         const shuffled = [...allImages].sort(() => 0.5 - Math.random());
-        const selectedImages = shuffled.slice(0, IMAGES_TO_SHOW);
+        const selectedImages = shuffled.slice(0, 6);
 
         const gallery = document.getElementById('photo-gallery');
         gallery.innerHTML = selectedImages.map((src, index) => `
-            <article class="gallery-item">
-                <img src="${src}" alt="Featured Bake & Craft creation ${index + 1}" loading="lazy">
+            <article class="gallery-item" style="opacity:0">
+                <img src="${src}" alt="Featured Bake & Craft creation ${index + 1}" loading="lazy" onload="this.parentElement.style.opacity='1'" onerror="this.parentElement.style.display='none'">
             </article>
         `).join('');
     </script>

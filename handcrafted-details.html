@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artisanal handcrafted pieces — miniatures, décor, and thoughtful details that make moments special.">
+    <title>Handcrafted Details — Bake & Craft by Leidy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="category-hero container">
+            <a href="index.html" class="back-link">← Back to home</a>
+            <div class="category-header">
+                <p class="eyebrow">Artisan collection</p>
+                <h1>Handcrafted Details</h1>
+                <p class="category-intro">
+                    Delicate miniatures, sculpted accents, and thoughtful embellishments. Each piece is handmade with
+                    precision and care to elevate every celebration.
+                </p>
+                <a href="mailto:bake_craft_leidy@outlook.com" class="btn btn-primary">Inquire about details</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="gallery-section container">
+                <div class="image-grid" id="photo-gallery"></div>
+            </section>
+        </main>
+
+        <footer class="footer container">
+            <p>© 2026 Bake & Craft by Leidy</p>
+        </footer>
+    </div>
+
+    <script>
+        const category = 'handcrafted-details';
+        const imagePath = `images/${category}`;
+        
+        // Try to load images - attempt up to 20 files to catch all numbered images
+        const images = Array.from({ length: 20 }, (_, i) => `${imagePath}/${i + 1}.png`);
+
+        const gallery = document.getElementById('photo-gallery');
+        gallery.innerHTML = images.map((src, index) => `
+            <article class="gallery-item" style="opacity:0">
+                <img src="${src}" alt="Handcrafted detail creation ${index + 1}" loading="lazy" onload="this.parentElement.style.opacity='1'" onerror="this.parentElement.style.display='none'">
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>

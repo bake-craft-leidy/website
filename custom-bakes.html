@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover our custom baked creations — from elegant tiered cakes to intricate decorated treats.">
+    <title>Custom Bakes — Bake & Craft by Leidy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="category-hero container">
+            <a href="index.html" class="back-link">← Back to home</a>
+            <div class="category-header">
+                <p class="eyebrow">Signature collection</p>
+                <h1>Custom Bakes</h1>
+                <p class="category-intro">
+                    Bespoke designs, premium flavors, and meticulous attention to detail. Each creation is made to order
+                    with your vision in mind.
+                </p>
+                <a href="mailto:bake_craft_leidy@outlook.com" class="btn btn-primary">Request a custom order</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="gallery-section container">
+                <div class="image-grid" id="photo-gallery"></div>
+            </section>
+        </main>
+
+        <footer class="footer container">
+            <p>© 2026 Bake & Craft by Leidy</p>
+        </footer>
+    </div>
+
+    <script>
+        const category = 'custom-bakes';
+        const imagePath = `images/${category}`;
+        
+        // Try to load images - attempt up to 20 files to catch all numbered images
+        const images = Array.from({ length: 20 }, (_, i) => `${imagePath}/${i + 1}.png`);
+
+        const gallery = document.getElementById('photo-gallery');
+        gallery.innerHTML = images.map((src, index) => `
+            <article class="gallery-item" style="opacity:0">
+                <img src="${src}" alt="Custom bake creation ${index + 1}" loading="lazy" onload="this.parentElement.style.opacity='1'" onerror="this.parentElement.style.display='none'">
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>
