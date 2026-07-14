@@ -34,32 +34,9 @@
     <!-- Gallery Section -->
     <main class="gallery-section">
         <div class="container">
-            <div class="image-grid">
-                <!-- Image Card 1 -->
-                <div class="gallery-item">
-                    <img src="images/project1.png" alt="Beautiful custom cake design" loading="lazy">
-                </div>
-                <!-- Image Card 2 -->
-                <div class="gallery-item">
-                    <img src="images/project2.png" alt="Handmade crafting detail" loading="lazy">
-                </div>
-                <!-- Image Card 3 -->
-                <div class="gallery-item">
-                    <img src="images/project3.png" alt="Freshly baked pastries" loading="lazy">
-                </div>
-                <!-- Image Card 4 -->
-                <div class="gallery-item">
-                    <img src="images/project4.png" alt="Artisanal craft project" loading="lazy">
-                </div>
-                <!-- Image Card 5 -->
-                <div class="gallery-item">
-                    <img src="images/project5.png" alt="Specialty decorated cookies" loading="lazy">
-                </div>
-                <!-- Image Card 6 -->
-                <div class="gallery-item">
-                    <img src="images/project6.png" alt="Creative seasonal crafts" loading="lazy">
-                </div>
-            </div>
+           <div class="image-grid" id="photo-gallery">
+               <!-- JavaScript will inject the images here -->
+           </div>
         </div>
     </main>
 
@@ -67,6 +44,24 @@
     <footer class="footer">
         <p>&copy; 2026 Bake & Craft by Leidy. All rights reserved.</p>
     </footer>
-
+<script>
+    const TOTAL_IMAGES = 6;
+    const IMAGES_TO_SHOW = 6;
+    // 1. Generate the array of filenames 
+    const allImages = [];
+    for (let i = 1; i <= TOTAL_IMAGES ; i ++) {
+        allImages.push(`images/project-${i}.png`);
+    }
+    // 2. Shuffle and slice the array
+    const shuffled = allImages.sort(() => 0.5 - Math.random());
+    const selectedImages = shuffled.slice(0, IMAGES_TO_SHOW);
+    // 3. Render the page
+    const gallery = document.getElementById('photo-gallery');
+    gallery.innerHTML = selectedImages.map(src => `
+        <div class="gallery-item">
+            <img src="${src}" alt="Bake and Craft Creation" loading="lazy">
+        </div>
+        `).join('');
+</script>
 </body>
 </html>
