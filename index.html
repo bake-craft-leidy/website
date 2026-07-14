@@ -45,23 +45,26 @@
         <p>&copy; 2026 Bake & Craft by Leidy. All rights reserved.</p>
     </footer>
 <script>
-    const TOTAL_IMAGES = 6;
+    const TOTAL_IMAGES = 6; // Change this number when you upload new photos
     const IMAGES_TO_SHOW = 6;
-    // 1. Generate the array of filenames 
+    
+    // 1. Generate the array of filenames programmatically
     const allImages = [];
-    for (let i = 1; i <= TOTAL_IMAGES ; i ++) {
+    for (let i = 1; i <= TOTAL_IMAGES; i++) {
         allImages.push(`images/project-${i}.png`);
     }
+
     // 2. Shuffle and slice the array
     const shuffled = allImages.sort(() => 0.5 - Math.random());
     const selectedImages = shuffled.slice(0, IMAGES_TO_SHOW);
-    // 3. Render the page
+
+    // 3. Render to the page
     const gallery = document.getElementById('photo-gallery');
     gallery.innerHTML = selectedImages.map(src => `
         <div class="gallery-item">
             <img src="${src}" alt="Bake and Craft Creation" loading="lazy">
         </div>
-        `).join('');
+    `).join('');
 </script>
 </body>
 </html>
